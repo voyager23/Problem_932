@@ -1,0 +1,149 @@
+# Organizing Multiple Rust Files into a Single Compilation Unit
+
+## 1. Using Modules (`mod`) in a Single Project
+If you have multiple `.rs` files, you can use modules to compile them together.
+
+### **Project Structure**
+```
+my_project/
+│── src/
+│   │── main.rs
+│   │── math.rs
+│   └── utils.rs
+│── Cargo.toml
+```
+
+### **Defining Modules (`main.rs`)**
+```rust
+mod math;
+mod utils;
+
+fn main() {
+    let sum = math::add(3, 4);
+    let message = utils::greet("Alice");
+
+    println!("Sum: {}", sum);
+    println!("{}", message);
+}
+```
+
+### **Creating `math.rs`**
+```rust
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+```
+
+### **Creating `utils.rs`**
+```rust
+pub fn greet(name: &str) -> String {
+    format!("Hello, {}!", name)
+}
+```
+
+✅ **Compile and Run**
+```sh
+cargo run
+```
+
+## 2. Using a Library (`lib.rs`) Instead of `main.rs`
+For reusable code, create a **library** (`lib.rs`) instead of a binary (`main.rs`).
+
+### **Project Structure**
+```
+my_library/
+│── src/
+│   │── lib.rs
+│   │── math.rs
+│   └── utils.rs
+│── Cargo.toml
+```
+
+### **Defining Modules (`lib.rs`)**
+```rust
+pub mod math;
+pub mod utils;
+```
+
+Now, `math.rs` and `utils.rs` stay the same.
+
+✅ **Compile the Library**
+```sh
+cargo build
+```
+
+✅ **Use This Library in Another Project**
+In a separate project, add this to `Cargo.toml`:
+```toml
+[dependencies]
+my_library = { path = "../my_library" }
+```
+Then, in your code:
+```rust
+use my_library::math::add;
+use my_library::utils::greet;
+```
+
+## 3. Nested Modules for Larger Projects
+If your project is big, use **nested modules** inside directories.
+
+### **Project Structure**
+```
+my_project/
+│── src/
+│   │── main.rs
+│   │── math/
+│   │   │── mod.rs
+│   │   ├── add.rs
+│   │   └── subtract.rs
+│   └── utils.rs
+```
+
+### **Defining `math/mod.rs`**
+```rust
+pub mod add;
+pub mod subtract;
+```
+
+### **Defining `math/add.rs`**
+```rust
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+```
+
+### **Defining `math/subtract.rs`**
+```rust
+pub fn subtract(a: i32, b: i32) -> i32 {
+    a - b
+}
+```
+
+### **Using It in `main.rs`**
+```rust
+mod math;
+mod utils;
+
+use math::add::add;
+use math::subtract::subtract;
+
+fn main() {
+    println!("5 + 3 = {}", add(5, 3));
+    println!("5 - 3 = {}", subtract(5, 3));
+}
+```
+
+✅ **Run the Project**
+```sh
+cargo run
+```
+
+---
+
+## **Final Thoughts**
+- Use `mod` to structure your Rust files.
+- For large projects, use nested modules and separate directories.
+- If you want a reusable package, create a `lib.rs` and compile it as a library.
+
+Would you like help setting up a specific project structure? 🚀
+
