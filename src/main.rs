@@ -17,7 +17,7 @@ fn main()
             // for each number
             // calc square
             // get concat(square, number_of_digits)
-            let cct : u32 = file1::concat(x * x, t.2.try_into().unwrap());
+            let cct : u32 = file1::concat(x);
             println!("x:{}  sqr:{}  cct:{}", x, x*x, cct);
        }
     }
