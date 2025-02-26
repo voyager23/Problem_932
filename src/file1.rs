@@ -26,16 +26,14 @@ pub fn twenty_twentyfive(n: u32) -> bool {
     loop {
         let mut lhs = sq / d;
         let mut rhs = sq % d;
-        println!("lhs: {}  rhs: {}  sum: {}", lhs, rhs, lhs + rhs);
+        println!("lhs: {}  rhs: {} ", lhs, rhs);
         // TODO this should be the concatenation of lhs&rhs
         while rhs > 0 {
             lhs *= 10;
-            dbg!(lhs);
-            dbg!(rhs);
             lhs = lhs + rhs/10;
-            rhs %= 10;
+            rhs /= 10;
         }
-
+        println!("concat {}", lhs);
         if lhs == n {
             flag = true;
             break;
@@ -45,4 +43,17 @@ pub fn twenty_twentyfive(n: u32) -> bool {
         if d > sq { break; }  // Ensuring termination
     }
     flag
+}
+
+pub fn concat() {
+    let mut ab : u32 = 9801;
+    let s : String = ab.to_string();
+    let pq = &s[2..];
+    
+    let number: u32 = pq.parse().expect("Not a valid number");
+    
+    ab = (ab/100)*10 + number;
+    
+    println!("{}",ab);
+    
 }

@@ -11,4 +11,6 @@ fn main() {
             println!("{0} {1} {2}", n, n*n, _foo);
         }
     }
+
+    file1::concat();
 }
