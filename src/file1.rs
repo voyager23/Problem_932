@@ -57,3 +57,14 @@ pub fn concat() {
     println!("{}",ab);
     
 }
+
+pub fn digits(){
+    let mut first : u32;
+    let mut end : u32;
+
+    for digits in 2..5{
+        first = u32::pow(10,digits-1) + 1;
+        end = u32::pow(10,digits);
+        println!("digits:{}\tfirst:{}  end:{}", digits, first, end);
+    }
+}

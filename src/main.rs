@@ -13,4 +13,6 @@ fn main() {
     }
 
     file1::concat();
+
+    file1::digits();
 }
