@@ -45,27 +45,27 @@ pub fn twenty_twentyfive(n: u32) -> bool {
     flag
 }
 
-pub fn concat(n:u32) -> u32 {
+pub fn concat(n:u32, d:usize) -> u32 {
     let mut ab : u32 = n;
     let s : String = ab.to_string();
-    let pq = &s[2..];
-    
+    let pq = &s[d..];
+
     let number: u32 = pq.parse().expect("Not a valid number");
     
     ab = (ab/100)*10 + number;
     // println!("{}",ab);
-    
+
     ab
     
 }
 
-pub fn digits(lo:u32, hi:u32) -> Vec<(u32,u32)>{
-    let mut limits : Vec<(u32,u32)> = vec![];
+pub fn digits(lo:u32, hi:u32) -> Vec<(u32,u32,u32)>{
+    let mut limits : Vec<(u32,u32,u32)> = vec![];
     for digits in lo..hi+1{
         let first : u32 = u32::pow(10,digits-1) + 1;
         let end = u32::pow(10,digits);
         println!("digits:{}\tfirst:{}  end:{}", digits, first, end);
-        limits.push((first,end));
+        limits.push((first,end,digits));
     }
     limits
 }

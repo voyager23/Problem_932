@@ -7,11 +7,18 @@ fn main()
     //  n such that n=q+r and n^2=q*10^m+r, for some m >= 1, q>=0 and 0<=r<10^m.
 
     let _limits = file1::digits(1,2);
-    let mut _t : (u32,u32) = (42,42);
+
+    // get a vector<(lo, hi, ndigits)>
     for t in  _limits 
     { 
        for x in t.0 .. t.1 {
+            if x < 10 {continue};
             println!("{}",x);
+            // for each number
+            // calc square
+            // get concat(square, number_of_digits)
+            let cct : u32 = file1::concat(x * x, t.2.try_into().unwrap());
+            println!("x:{}  sqr:{}  cct:{}", x, x*x, cct);
        }
     }
 
