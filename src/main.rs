@@ -14,7 +14,9 @@ fn main() {
     }
 
     let _limits = file1::digits();
-    let mut _t : (u32,u32) = (0,0);
-    for _t in  _limits{} { println!("{} {}", _t.0, _t.1);}
-    
+    let mut _t : (u32,u32) = (42,42);
+    for _t in  _limits 
+    { 
+        println!("{} {}", _t.0, _t.1);
+    }
 }
