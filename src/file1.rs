@@ -58,13 +58,16 @@ pub fn concat() {
     
 }
 
-pub fn digits(){
-    let mut first : u32;
-    let mut end : u32;
+pub fn digits() -> Vec<(u32,u32)>{
+    let mut first : u32 = 0;
+    let mut end : u32 = 0;
+    let mut limits : Vec<(u32,u32)> = vec![];
 
     for digits in 2..5{
         first = u32::pow(10,digits-1) + 1;
         end = u32::pow(10,digits);
         println!("digits:{}\tfirst:{}  end:{}", digits, first, end);
+        limits.push((first,end));
     }
+    limits
 }
