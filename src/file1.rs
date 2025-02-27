@@ -57,15 +57,17 @@ pub fn concat(n:u32) -> u32 {
 
     let z = length-digits;
 
-    let q = &snn[z..];  // right hand side
-    let number: u32 = q.parse().expect("Not a valid number");   // convert to integer
-    let cat_str = number.to_string(); // and back to string
+    let q = &snn[z..];  // right hand side string
+    let q_number: u32 = q.parse().expect("Not a valid number");   // rhs convert to integer
+    let p = &snn[..z];  // left hand side string
+    let p_number: u32 = p.parse().expect("Not a valid number");   // lhs convert to integer
+    let pq_number = p_number + q_number;
 
-    let result = snn[0..z].to_owned() + &cat_str;
+    let cat_str = q_number.to_string(); // rhs back to string
+    let result = snn[0..z].to_owned() + &cat_str;   // concatenate
+    let number: u32 = result.parse().expect("Not a valid number"); 
 
-    let number: u32 = result.parse().expect("Not a valid number");
-
-    if number == n*n
+    if number == pq_number * pq_number
     {
         println!("{} is a solution", number );
     }

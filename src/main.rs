@@ -1,5 +1,6 @@
 #[allow(dead_code)]
 mod file1;
+mod file2;
 
 fn main() 
 {
@@ -12,15 +13,10 @@ fn main()
     for t in  _limits 
     { 
        for x in t.0 .. t.1 {
-            if x < 10 {continue};
-            println!("{}",x);
-            let cct : u32 = file1::concat(x);
-            println!("x:{}  sqr:{}  cct:{}", x, x*x, cct);
+            //if x < 10 {continue};
+            file2::test2025(x)
        }
     }
-
-    //let x : u32 = file1::concat(9801);
-    //println!("9801 -> {}", file1::concat(9801) );
 }
 
 
