@@ -1,5 +1,4 @@
-
-use std::string::String;
+// Filename: file1.rs
 
 pub fn func1(){
 
@@ -49,24 +48,28 @@ pub fn twenty_twentyfive(n: u32) -> bool {
 }
 
 pub fn concat(n:u32) -> u32 {
-    // stringify n - get len() digits
-    // find square - stringify - get length
-    // slice square q = &s[(length-digits)..];
 
-    // slice -> integer -> cat_string
-    // concat square &s[0..length-digits] & cat_string
-    // revert final string to integer
     let sn = n.to_string();
     let digits = sn.len();
+
     let snn = (n*n).to_string();
     let length = snn.len();
+
     let z = length-digits;
-    let q = &snn[z..];
-    let number: u32 = q.parse().expect("Not a valid number");
-    let cat_str = number.to_string();
+
+    let q = &snn[z..];  // right hand side
+    let number: u32 = q.parse().expect("Not a valid number");   // convert to integer
+    let cat_str = number.to_string(); // and back to string
 
     let result = snn[0..z].to_owned() + &cat_str;
+
     let number: u32 = result.parse().expect("Not a valid number");
+
+    if number == n*n
+    {
+        println!("{} is a solution", number );
+    }
+
     number
 
 }

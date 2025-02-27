@@ -14,9 +14,6 @@ fn main()
        for x in t.0 .. t.1 {
             if x < 10 {continue};
             println!("{}",x);
-            // for each number
-            // calc square
-            // get concat(square, number_of_digits)
             let cct : u32 = file1::concat(x);
             println!("x:{}  sqr:{}  cct:{}", x, x*x, cct);
        }
