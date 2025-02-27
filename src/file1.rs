@@ -85,11 +85,11 @@ pub fn concat(n:u32) -> u32 {
     ab*/
 
 
-pub fn digits(lo:u32, hi:u32) -> Vec<(u32,u32,u32)>{
-    let mut limits : Vec<(u32,u32,u32)> = vec![];
+pub fn digits(lo:u64, hi:u64) -> Vec<(u64,u64,u64)>{
+    let mut limits : Vec<(u64,u64,u64)> = vec![];
     for digits in lo..hi+1{
-        let first : u32 = u32::pow(10,digits-1) + 1;
-        let end = u32::pow(10,digits);
+        let first : u64 = u64::pow(10,(digits-1).try_into().unwrap()) + 1;
+        let end = u64::pow(10,digits.try_into().unwrap());
         println!("digits:{}\tfirst:{}  end:{}", digits, first, end);
         limits.push((first,end,digits));
     }

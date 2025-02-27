@@ -7,16 +7,18 @@ fn main()
     // Found sequence A248353 in OEIS. Refered to as kaprekar Numbers.
     //  n such that n=q+r and n^2=q*10^m+r, for some m >= 1, q>=0 and 0<=r<10^m.
 
-    let _limits = file1::digits(1,2);
+    let mut _t : u64 = 0;
+    let _limits = file1::digits(1,8);
 
     // get a vector<(lo, hi, ndigits)>
     for t in  _limits 
     { 
        for x in t.0 .. t.1 {
-            //if x < 10 {continue};
-            file2::test2025(x)
+            if x < 10 {continue};
+            _t += file2::test2025(x)
        }
     }
+    println!("T(8) = {}", _t);
 }
 
 
