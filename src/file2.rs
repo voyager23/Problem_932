@@ -25,11 +25,23 @@ pub fn test2025(n:u32)
     // now need to calc a_num + b_num
     let a_sum_b = a_num + b_num;    // need to square this number
     let mut a_cat_b = a_num;
+    let mut v: Vec<u32> = vec![];
     while b_num > 0
     {
+        v.push(b_num % 10);
+        b_num /= 10;
+    }
+    // v has digits in reverse order
+    while v.is_empty() == false
+    {
         a_cat_b *= 10;
-        a_cat_b += b_num % 10;
-        b_num /=10 ;
+        let mm : u32 = *v.last().unwrap();
+        a_cat_b = a_cat_b + mm;
+        v.truncate(v.len() - 1);
     }
     println!("  sum:{} sum_sqrd:{} cat:{}", a_sum_b, a_sum_b*a_sum_b, a_cat_b);
+    if a_sum_b*a_sum_b == a_cat_b
+    {
+        println!("Solution!");
+    }
 }
